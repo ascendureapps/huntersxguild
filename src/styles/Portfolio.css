@@ -1,0 +1,182 @@
+/* Shared portfolio layout */
+.portfolio-container {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.portfolio-section {
+  min-height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  scroll-snap-align: start;
+}
+
+.section-content {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  text-align: center;
+  color: #2c3e50;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #3498db, #2ecc71);
+  border-radius: 2px;
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 1000;
+  padding: 4px 6px;
+  border-radius: 999px;
+  border: none;
+  background: #e5e7eb;
+  color: #f9fafb;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease,
+    color 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background: #1f2937;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.theme-toggle:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+}
+
+.theme-toggle-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: #111827;
+  transform: translateX(0);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.theme-toggle-label {
+  color: #111827;
+}
+
+.theme-toggle.theme-toggle--on {
+  background: #111827;
+  color: #e5e7eb;
+}
+
+.theme-toggle.theme-toggle--on .theme-toggle-thumb {
+  background: #facc15;
+  transform: translateX(6px);
+}
+
+.theme-toggle.theme-toggle--on .theme-toggle-label {
+  color: #e5e7eb;
+}
+
+/* Dark mode */
+.portfolio-container.dark-mode {
+  background-color: #020617;
+  color: #ffffff;
+}
+
+.portfolio-container.dark-mode .section-title {
+  color: #ffffff;
+}
+
+/* Force text elements to white in dark mode */
+.portfolio-container.dark-mode h1,
+.portfolio-container.dark-mode h2,
+.portfolio-container.dark-mode h3,
+.portfolio-container.dark-mode h4,
+.portfolio-container.dark-mode h5,
+.portfolio-container.dark-mode h6,
+.portfolio-container.dark-mode p,
+.portfolio-container.dark-mode span,
+.portfolio-container.dark-mode li,
+.portfolio-container.dark-mode label {
+  color: #ffffff;
+}
+
+.portfolio-container.dark-mode .intro-section,
+.portfolio-container.dark-mode .skills-section,
+.portfolio-container.dark-mode .experiences-section,
+.portfolio-container.dark-mode .certificates-section,
+.portfolio-container.dark-mode .education-section,
+.portfolio-container.dark-mode .projects-section {
+  background: transparent;
+}
+
+.portfolio-container.dark-mode .skill-card,
+.portfolio-container.dark-mode .experience-card,
+.portfolio-container.dark-mode .certificate-card,
+.portfolio-container.dark-mode .education-card,
+.portfolio-container.dark-mode .project-card {
+  background: #020617;
+  border-color: #1f2937;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+.portfolio-container.dark-mode .experience-card {
+  border-left-color: #4b5563;
+}
+
+.portfolio-container.dark-mode .certificate-date {
+  background: #16a34a;
+}
+
+.portfolio-container.dark-mode .project-tech,
+.portfolio-container.dark-mode .experience-description,
+.portfolio-container.dark-mode .project-description,
+.portfolio-container.dark-mode .certificate-credential,
+.portfolio-container.dark-mode .contact-item span:not(.contact-label) {
+  color: #9ca3af;
+}
+
+/* Shared animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
