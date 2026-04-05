@@ -8,7 +8,7 @@ const Education = ({ education }) => {
   return (
     <section id="education" className="portfolio-section education-section" ref={targetRef}>
       <div className="section-content">
-        <h2 className="section-title">Education</h2>
+        <h2 className="section-title">Education Background</h2>
         <div className="education-list">
           {education.map((item, index) => (
             <EducationCard key={index} education={item} index={index} isInView={isInView} />
@@ -20,4 +20,3 @@ const Education = ({ education }) => {
 };
 
 export default Education;
-

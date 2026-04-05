@@ -1,14 +1,12 @@
 const ExperienceCard = ({ experience, index, isInView }) => {
   return (
-    <div 
+    <div
       className={`experience-card ${isInView ? 'experience-card-fade-in' : 'experience-card-fade-out'}`}
-      style={{ animationDelay: `${index * 0.2}s` }}
+      style={{ animationDelay: `${index * 0.3}s` }}
     >
-      <div className="experience-header">
-        <h3>{experience.title}</h3>
-        <span className="experience-period">{experience.period}</span>
-      </div>
+      <h3 className="experience-title">{experience.title}</h3>
       <p className="experience-company">{experience.company}</p>
+      <span className="experience-period">{experience.period}</span>
       <p className="experience-description">{experience.description}</p>
     </div>
   );

@@ -8,6 +8,7 @@ import Education from '../components/education/Education';
 import Projects from '../components/projects/Projects';
 import {
   personalInfo,
+  aboutMe,
   skills,
   experiences,
   certificates,
@@ -16,7 +17,7 @@ import {
 } from '../utils/portfolioData';
 
 const Portfolio = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
   const toggleTheme = () => {
     setIsDarkMode((prev) => !prev);
@@ -33,7 +34,7 @@ const Portfolio = () => {
         <span className="theme-toggle-label">
         </span>
       </button>
-      <Introduction personalInfo={personalInfo} />
+      <Introduction personalInfo={personalInfo} aboutMe={aboutMe} />
       <Skills skills={skills} />
       <Experiences experiences={experiences} />
       <Education education={education} />

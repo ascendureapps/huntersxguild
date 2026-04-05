@@ -23,21 +23,26 @@
 }
 
 .skill-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.52);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  border: none;
+  box-shadow:
+    0 8px 32px rgba(31, 38, 135, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.75);
   padding: 0.85rem 1rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
   text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.5s, box-shadow 0.5s;
   opacity: 0;
 }
 
 .skill-card-fade-in {
-  animation: skillFadeIn 1s ease-out forwards;
+  animation: skillFadeIn 1.5s ease-out forwards;
 }
 
 .skill-card-fade-out {
-  animation: skillFadeOut 0.5s ease-in forwards;
+  animation: skillFadeOut 0.75s ease-in forwards;
 }
 
 @keyframes skillFadeIn {
@@ -63,8 +68,10 @@
 }
 
 .skill-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  transform: translateY(-4px);
+  box-shadow:
+    0 12px 40px rgba(31, 38, 135, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .skill-card h3 {
@@ -84,7 +91,34 @@
 }
 
 @media (max-width: 768px) {
+  /* One column per category: title, then 2-col grid of skill cards */
   .skills-columns {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .skill-column-title {
+    text-align: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+  }
+
+  .skill-card {
+    padding: 0.65rem 0.5rem;
+  }
+
+  .skill-card h3 {
+    font-size: 0.85rem;
+    line-height: 1.25;
+    word-break: break-word;
+  }
+
+  .skill-level {
+    font-size: 0.6rem;
+    padding: 0.15rem 0.45rem;
   }
 }
