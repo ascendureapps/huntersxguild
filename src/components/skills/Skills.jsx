@@ -3,19 +3,22 @@ import SkillCard from './SkillCard';
 import '../../styles/Skills.css';
 import useInView from '../../hooks/useInView';
 
+const STAGGER_S = 0.3;
+
 const Skills = ({ skills }) => {
   const { targetRef, isInView } = useInView({ threshold: 0.2 });
-  const groupedSkills = Object.entries(skills);
 
-  const animIndexByKey = useMemo(() => {
-    const map = new Map();
+  /** One sequence index per column title, then each card in that column (section by section). */
+  const columnsWithAnim = useMemo(() => {
     let seq = 0;
-    for (const [groupName, items] of Object.entries(skills)) {
-      for (const skill of items) {
-        map.set(`${groupName}-${skill.name}`, seq++);
-      }
-    }
-    return map;
+    return Object.entries(skills).map(([groupName, items]) => {
+      const titleIndex = seq++;
+      const cards = items.map((skill) => ({
+        skill,
+        index: seq++,
+      }));
+      return { groupName, cards, titleIndex };
+    });
   }, [skills]);
 
   return (
@@ -23,16 +26,24 @@ const Skills = ({ skills }) => {
       <div className="section-content">
         <h2 className="section-title">Technical Skills</h2>
         <div className="skills-columns">
-          {groupedSkills.map(([groupName, items]) => (
+          {columnsWithAnim.map(({ groupName, cards, titleIndex }) => (
             <div key={groupName} className="skill-column">
-              <h3 className="skill-column-title">{groupName}</h3>
+              <h3
+                className={`skill-column-title skill-column-title--anim ${
+                  isInView ? 'skill-card-fade-in' : 'skill-card-fade-out'
+                }`}
+                style={{ animationDelay: `${titleIndex * STAGGER_S}s` }}
+              >
+                {groupName}
+              </h3>
               <div className="skills-grid">
-                {items.map((skill) => (
+                {cards.map(({ skill, index }) => (
                   <SkillCard
                     key={`${groupName}-${skill.name}`}
                     skill={skill}
-                    index={animIndexByKey.get(`${groupName}-${skill.name}`) ?? 0}
+                    index={index}
                     isInView={isInView}
+                    staggerSec={STAGGER_S}
                   />
                 ))}
               </div>

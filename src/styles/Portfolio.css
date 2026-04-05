@@ -37,6 +37,7 @@
 .portfolio-container :is(
   .project-tech,
   .experience-description,
+  .experience-roles-list,
   .project-owner,
   .project-description,
   .certificate-credential,
@@ -174,7 +175,7 @@
   color: #ffffff;
 }
 
-/* Force text elements to white in dark mode */
+/* Force text elements to white in dark mode (skill badges keep engraved colors from Skills.css) */
 .portfolio-container.dark-mode h1,
 .portfolio-container.dark-mode h2,
 .portfolio-container.dark-mode h3,
@@ -182,7 +183,7 @@
 .portfolio-container.dark-mode h5,
 .portfolio-container.dark-mode h6,
 .portfolio-container.dark-mode p,
-.portfolio-container.dark-mode span,
+.portfolio-container.dark-mode span:not(.skill-level):not(.skill-level-sparkle):not(.experience-roles-label),
 .portfolio-container.dark-mode li,
 .portfolio-container.dark-mode label {
   color: #ffffff;
@@ -211,8 +212,31 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
+.portfolio-container.dark-mode .skill-level {
+  border-color: #38bdf8;
+  color: #e0f2fe;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.portfolio-container.dark-mode .skill-level--advanced {
+  border-color: #fbbf24;
+  color: #fef9c3;
+}
+
+.portfolio-container.dark-mode .skill-level--beginner {
+  border-color: #a16207;
+  color: #ecd9c0;
+}
+
+.portfolio-container.dark-mode .skill-level--intermediate {
+  border-color: #94a3b8;
+  color: #e2e8f0;
+}
+
 .portfolio-container.dark-mode .project-tech,
 .portfolio-container.dark-mode .experience-description,
+.portfolio-container.dark-mode .experience-roles-list,
+.portfolio-container.dark-mode .experience-roles-list li,
 .portfolio-container.dark-mode .project-description,
 .portfolio-container.dark-mode .certificate-credential,
 .portfolio-container.dark-mode .contact-item span:not(.contact-label) {
@@ -229,6 +253,14 @@
 
 .portfolio-container.dark-mode .projects-expand-toggle:hover:not(:disabled) {
   color: #93c5fd;
+}
+
+.portfolio-container.dark-mode .experience-roles-toggle {
+  color: #e2e8f0;
+}
+
+.portfolio-container.dark-mode .experience-roles-toggle:hover {
+  color: #7dd3fc;
 }
 
 .portfolio-container.dark-mode .project-card--has-link .project-card-view-link {

@@ -4,8 +4,8 @@
 
 .skills-columns {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: 1fr;
+  gap: 2.25rem;
   margin-top: 2rem;
 }
 
@@ -13,12 +13,17 @@
   font-size: 1.2rem;
   color: #2c3e50;
   margin: 0 0 1rem;
-  text-align: center;
+  text-align: left;
+}
+
+/* Same fade sequence as skill cards; starts hidden until animation runs. */
+.skill-column-title--anim {
+  opacity: 0;
 }
 
 .skills-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
 }
 
@@ -82,18 +87,120 @@
 
 .skill-level {
   display: inline-block;
-  padding: 0.2rem 0.65rem;
-  background: linear-gradient(90deg, #3498db, #2ecc71);
-  color: white;
+  padding: 0.26rem 0.78rem;
+  background: transparent;
+  border: 2px solid #2874a6;
+  color: #06253a;
   border-radius: 20px;
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   font-weight: 600;
+  letter-spacing: 0.02em;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.45),
+    0 -1px 1px rgba(0, 0, 0, 0.15);
+}
+
+.skill-level--advanced {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 2px solid #ca8a04;
+  color: #3d1f05;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.35),
+    0 -1px 1px rgba(0, 0, 0, 0.12);
+}
+
+.skill-level-sparkle {
+  position: absolute;
+  pointer-events: none;
+  font-size: 0.62rem;
+  line-height: 1;
+  color: #fff200;
+  text-shadow:
+    0 0 5px rgba(255, 255, 200, 1),
+    0 0 12px rgba(255, 237, 0, 0.95),
+    0 0 20px rgba(250, 204, 21, 0.7);
+  animation: skill-level-sparkle 2.1s ease-in-out infinite;
+}
+
+.skill-level-sparkle--1 {
+  top: -0.2rem;
+  left: 0.2rem;
+  animation-delay: 0s;
+}
+
+.skill-level-sparkle--2 {
+  top: -0.05rem;
+  right: -0.2rem;
+  animation-delay: 0.45s;
+}
+
+.skill-level-sparkle--3 {
+  bottom: -0.35rem;
+  left: 50%;
+  margin-left: -0.38rem;
+  animation-delay: 0.9s;
+}
+
+@keyframes skill-level-sparkle {
+  0%,
+  100% {
+    opacity: 0.45;
+    filter: brightness(1.05);
+  }
+  40% {
+    opacity: 1;
+    filter: brightness(1.5);
+  }
+  60% {
+    opacity: 0.92;
+    filter: brightness(1.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-level-sparkle {
+    animation: none;
+    opacity: 0.95;
+    filter: brightness(1.15);
+  }
+}
+
+.skill-level--beginner {
+  background: transparent;
+  border: 2px solid #5c3d1e;
+  color: #130d08;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.32),
+    0 -1px 1px rgba(0, 0, 0, 0.15);
+}
+
+.skill-level--intermediate {
+  background: transparent;
+  border: 2px solid #64748b;
+  color: #0f172a;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.45),
+    0 -1px 1px rgba(0, 0, 0, 0.12);
+}
+
+@media (max-width: 1100px) and (min-width: 769px) {
+  .skills-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) and (min-width: 769px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 768px) {
-  /* One column per category: title, then 2-col grid of skill cards */
   .skills-columns {
-    grid-template-columns: 1fr;
     gap: 1.75rem;
   }
 
@@ -118,7 +225,11 @@
   }
 
   .skill-level {
-    font-size: 0.6rem;
-    padding: 0.15rem 0.45rem;
+    font-size: 0.7rem;
+    padding: 0.22rem 0.55rem;
+  }
+
+  .skill-level-sparkle {
+    font-size: 0.52rem;
   }
 }

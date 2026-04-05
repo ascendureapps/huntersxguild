@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../styles/Portfolio.css';
 import Introduction from '../components/introduction/Introduction';
 import Skills from '../components/skills/Skills';
@@ -16,8 +16,27 @@ import {
   projects
 } from '../utils/portfolioData';
 
+const PAGE_BG_LIGHT = '#ffffff';
+const PAGE_BG_DARK = '#020617';
+
 const Portfolio = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    const bg = isDarkMode ? PAGE_BG_DARK : PAGE_BG_LIGHT;
+    if (isDarkMode) {
+      root.classList.add('app-dark');
+    } else {
+      root.classList.remove('app-dark');
+    }
+    root.style.backgroundColor = bg;
+    document.body.style.backgroundColor = bg;
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    if (metaTheme) {
+      metaTheme.setAttribute('content', bg);
+    }
+  }, [isDarkMode]);
 
   const toggleTheme = () => {
     setIsDarkMode((prev) => !prev);

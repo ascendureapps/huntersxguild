@@ -48,8 +48,8 @@ const CertificateCard = ({ certificate, index, isInView }) => {
         </a>
       ) : null}
       <h3>{certificate.name}</h3>
-      <span className="certificate-date">{certificate.date}</span>
       <p className="certificate-issuer">{certificate.issuer}</p>
+      <span className="certificate-date">{certificate.date}</span>
       {certificate.credential ? (
         <span className="certificate-credential">{certificate.credential}</span>
       ) : null}

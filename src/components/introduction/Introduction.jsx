@@ -9,8 +9,6 @@ const Introduction = ({ personalInfo, aboutMe }) => {
         <ProfilePic />
         <h1 className="name">{personalInfo.name}</h1>
         <h2 className="title">{personalInfo.title}</h2>
-        <br></br>
-        <br></br>
         {aboutMe && (
           <div className="about-me">
             <h3 className="about-me-heading">About me</h3>

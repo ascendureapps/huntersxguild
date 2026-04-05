@@ -2,6 +2,7 @@
   background: white;
   color: #2c3e50;
   text-align: center;
+  padding-top: 4.5rem;
 }
 
 .profile-pic-wrapper {
@@ -44,6 +45,8 @@
 .about-me {
   max-width: 720px;
   margin: 0 auto 2rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
   text-align: center;
   animation: fadeInUp 1.2s ease-out 0.53s both;
 }
@@ -122,6 +125,15 @@
 }
 
 @media (max-width: 768px) {
+  .intro-section {
+    padding-top: 3.75rem;
+  }
+
+  .about-me {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
   .intro-section .name {
     font-size: 2.5rem;
   }

@@ -74,13 +74,125 @@
   font-weight: 600;
 }
 
-.experience-description {
+.experience-card-body {
   grid-column: 1 / -1;
   grid-row: 3;
+  margin-top: 0.35rem;
+}
+
+.experience-roles-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0.65rem 0 0;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  transition: color 0.25s ease;
+}
+
+.experience-roles-toggle span {
+  color: inherit;
+}
+
+.experience-roles-toggle:hover {
+  color: #3498db;
+}
+
+.experience-roles-arrow {
+  flex-shrink: 0;
+  display: block;
+  margin-top: 0.22em;
+  transition: transform 0.25s ease;
+}
+
+.experience-roles-arrow.is-open {
+  transform: rotate(90deg);
+}
+
+.experience-roles-panel {
+  margin-top: 0.65rem;
+}
+
+.experience-roles-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: #555;
+  line-height: 1.65;
+  font-size: 0.98rem;
+}
+
+/* Enter only: base opacity 0 must NOT apply while closing or replacing the animation
+   clears slide-in “forwards” and every line flashes invisible at once. */
+.experience-roles-list:not(.experience-roles-list--leaving) .experience-roles-item {
+  opacity: 0;
+  transform: translateX(-0.65rem);
+  animation: experienceRolesSlideIn var(--roles-motion-ms, 320ms) cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: calc(var(--roles-stagger, 0) * 0.048s);
+}
+
+.experience-roles-list .experience-roles-item + .experience-roles-item {
+  margin-top: 0.45rem;
+}
+
+@keyframes experienceRolesSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-0.65rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Close: one line at a time, bottom → top. Stay fully visible until that row’s exit runs. */
+.experience-roles-list--leaving .experience-roles-item {
+  opacity: 1;
+  transform: translateX(0);
+  animation: experienceRolesSlideOut var(--roles-hide-ms, 70ms) cubic-bezier(0.55, 0.06, 0.68, 0.19)
+    forwards;
+  animation-delay: calc(
+    (var(--roles-count, 1) - 1 - var(--roles-stagger, 0)) * var(--roles-hide-ms, 70ms)
+  );
+}
+
+@keyframes experienceRolesSlideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-0.65rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-roles-list:not(.experience-roles-list--leaving) .experience-roles-item {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .experience-roles-list--leaving .experience-roles-item {
+    animation: none;
+    opacity: 0;
+    transform: translateX(-0.65rem);
+  }
+}
+
+.experience-description {
   color: #555;
   line-height: 1.6;
   font-size: 1rem;
-  margin: 0.5rem 0 0;
+  margin: 0.75rem 0 0;
 }
 
 @keyframes cardFadeIn {
@@ -129,7 +241,11 @@
     margin-bottom: 0.75rem;
   }
 
+  .experience-card-body {
+    margin-top: 0.5rem;
+  }
+
   .experience-description {
-    margin-top: 0;
+    margin-top: 0.65rem;
   }
 }
